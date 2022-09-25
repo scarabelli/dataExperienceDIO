@@ -38,7 +38,6 @@ create table product(
 	productProviderId int auto_increment primary key,
     productIdFK int,
     providerIdFK int,
-    productProviderId int,
      constraint fk_provider foreign key (providerIdFK) references provider(providerId),
       constraint fk_product foreign key (productIdFK) references product(productId)
        
@@ -57,7 +56,6 @@ create table product(
   
     create table paymentMethod( 
 	methodId int auto_increment primary key,
-    method varchar(45) not null,
     installment bool not null,
     method enum('pix','cartão de crédito','cartão de débito', 'boleto')
     );
@@ -84,7 +82,11 @@ create table product(
     productFK int,
     shippinFK int,
     ammount int,
-	constraint fk_order foreign key (orderIdFK) references orders(orderId),
-	constraint fk_product foreign key (productFK) references product(productId)	
+	constraint fk_order_product foreign key (orderIdFK) references orders(orderId),
+	constraint fk_products_in_this_order foreign key (productFK) references product(productId)	
     );
-    
+     show tables;
+     desc orders;
+     desc person;
+     
+     
